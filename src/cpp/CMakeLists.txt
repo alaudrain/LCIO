@@ -469,6 +469,11 @@ ADD_LCIO_EXAMPLE( lcio_parallel_processing )
 IF( BUILD_ROOTDICT )
   ADD_LCIO_EXAMPLE( lcio_io_benchmark )
   TARGET_LINK_LIBRARIES( bin_lcio_io_benchmark PRIVATE ${ROOT_LIBRARIES} )
+
+  # boostFile target needs ROOT libPhysics for 4vec manipulation, however ROOT
+  # is only imported in this project if building the dictionaries.
+  ADD_LCIO_EXAMPLE( boostFile )
+  TARGET_LINK_LIBRARIES( bin_boostFile PRIVATE ROOT::Physics )
 ENDIF()
 
 IF( BUILD_LCIO_EXAMPLES )
